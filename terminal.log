@@ -1,0 +1,455 @@
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs
+$ terraform apply -var-file="vars/sample.tfvars" .
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_efs_file_system.file_system will be created
+  + resource "aws_efs_file_system" "file_system" {
+      + arn                     = (known after apply)
+      + availability_zone_id    = (known after apply)
+      + availability_zone_name  = (known after apply)
+      + creation_token          = "sample_token"
+      + dns_name                = (known after apply)
+      + encrypted               = false
+      + id                      = (known after apply)
+      + kms_key_id              = (known after apply)
+      + number_of_mount_targets = (known after apply)
+      + owner_id                = (known after apply)
+      + performance_mode        = "generalPurpose"
+      + size_in_bytes           = (known after apply)
+      + tags_all                = (known after apply)
+      + throughput_mode         = "bursting"
+
+      + lifecycle_policy {
+          + transition_to_ia = "AFTER_30_DAYS"
+        }
+    }
+
+  # aws_efs_mount_target.alfa will be created
+  + resource "aws_efs_mount_target" "alfa" {
+      + availability_zone_id   = (known after apply)
+      + availability_zone_name = (known after apply)
+      + dns_name               = (known after apply)
+      + file_system_arn        = (known after apply)
+      + file_system_id         = (known after apply)
+      + id                     = (known after apply)
+      + ip_address             = (known after apply)
+      + mount_target_dns_name  = (known after apply)
+      + network_interface_id   = (known after apply)
+      + owner_id               = (known after apply)
+      + security_groups        = (known after apply)
+      + subnet_id              = "subnet-e8e25e8f"
+    }
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_efs_file_system.file_system: Creating...
+aws_efs_file_system.file_system: Still creating... [10s elapsed]
+aws_efs_file_system.file_system: Creation complete after 11s [id=fs-5f58dfeb]
+aws_efs_mount_target.alfa: Creating...
+
+Error: Failed getting Availability Zone from subnet ID (subnet-e8e25e8f): InvalidSubnetID.NotFound: The subnet ID 'subnet-e8e25e8f' does not exist
+        status code: 400, request id: 3d678fd9-2633-4bd6-82b6-d1efdd617425
+
+  on main.tf line 20, in resource "aws_efs_mount_target" "alfa":
+  20: resource "aws_efs_mount_target" "alfa" {
+
+
+
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs
+$ vim vars/sample.tfvars
+
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs
+$ terraform apply -var-file="vars/sample.tfvars" .
+aws_efs_file_system.file_system: Refreshing state... [id=fs-5f58dfeb]
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_efs_mount_target.alfa will be created
+  + resource "aws_efs_mount_target" "alfa" {
+      + availability_zone_id   = (known after apply)
+      + availability_zone_name = (known after apply)
+      + dns_name               = (known after apply)
+      + file_system_arn        = (known after apply)
+      + file_system_id         = "fs-5f58dfeb"
+      + id                     = (known after apply)
+      + ip_address             = (known after apply)
+      + mount_target_dns_name  = (known after apply)
+      + network_interface_id   = (known after apply)
+      + owner_id               = (known after apply)
+      + security_groups        = (known after apply)
+      + subnet_id              = "subnet-e8e25e8f"
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_efs_mount_target.alfa: Creating...
+
+Error: Failed getting Availability Zone from subnet ID (subnet-e8e25e8f): InvalidSubnetID.NotFound: The subnet ID 'subnet-e8e25e8f' does not exist
+        status code: 400, request id: 1df10864-9fee-41ae-b9a0-37204d191612
+
+  on main.tf line 20, in resource "aws_efs_mount_target" "alfa":
+  20: resource "aws_efs_mount_target" "alfa" {
+
+
+
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs
+$ cd vars
+
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs/vars
+$ ls
+sample.tfvars
+
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs/vars
+$ more sample.tfvars
+bash: more: command not found
+
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs/vars
+$ vim sample.tfvars
+
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs/vars
+$ terraform apply -var-file="vars/sample.tfvars" .
+
+Error: Failed to read variables file
+
+Given variables file vars/sample.tfvars does not exist.
+
+
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs/vars
+$ cd ..
+
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs
+$ terraform apply -var-file="vars/sample.tfvars" .
+aws_efs_file_system.file_system: Refreshing state... [id=fs-5f58dfeb]
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_efs_mount_target.alfa will be created
+  + resource "aws_efs_mount_target" "alfa" {
+      + availability_zone_id   = (known after apply)
+      + availability_zone_name = (known after apply)
+      + dns_name               = (known after apply)
+      + file_system_arn        = (known after apply)
+      + file_system_id         = "fs-5f58dfeb"
+      + id                     = (known after apply)
+      + ip_address             = (known after apply)
+      + mount_target_dns_name  = (known after apply)
+      + network_interface_id   = (known after apply)
+      + owner_id               = (known after apply)
+      + security_groups        = (known after apply)
+      + subnet_id              = "subnet-21086847"
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_efs_mount_target.alfa: Creating...
+aws_efs_mount_target.alfa: Still creating... [10s elapsed]
+aws_efs_mount_target.alfa: Still creating... [20s elapsed]
+aws_efs_mount_target.alfa: Still creating... [30s elapsed]
+aws_efs_mount_target.alfa: Still creating... [40s elapsed]
+aws_efs_mount_target.alfa: Still creating... [51s elapsed]
+aws_efs_mount_target.alfa: Still creating... [1m1s elapsed]
+aws_efs_mount_target.alfa: Still creating... [1m11s elapsed]
+aws_efs_mount_target.alfa: Still creating... [1m21s elapsed]
+aws_efs_mount_target.alfa: Creation complete after 1m24s [id=fsmt-72873cc7]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs
+$ terraform output
+
+Warning: No outputs found
+
+The state file either has no outputs defined, or all the defined outputs are
+empty. Please define an output in your configuration with the `output` keyword
+and run `terraform refresh` for it to become available. If you are using
+interpolation, please verify the interpolated value is not empty. You can use
+the `terraform console` command to assist.
+
+
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs
+$ ls
+README.md  main.tf  outputs.tf  terraform.tfstate  terraform.tfstate.backup  variables.tf  vars/
+
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs
+$ cat terraform.tfstate
+{
+  "version": 4,
+  "terraform_version": "0.14.8",
+  "serial": 5,
+  "lineage": "dedb7c2c-6d0f-4db0-2238-a9a278bca80a",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "aws_efs_file_system",
+      "name": "file_system",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:elasticfilesystem:us-east-1:650482310680:file-system/fs-5f58dfeb",
+            "availability_zone_id": "",
+            "availability_zone_name": "",
+            "creation_token": "sample_token",
+            "dns_name": "fs-5f58dfeb.efs.us-east-1.amazonaws.com",
+            "encrypted": false,
+            "id": "fs-5f58dfeb",
+            "kms_key_id": "",
+            "lifecycle_policy": [
+              {
+                "transition_to_ia": "AFTER_30_DAYS"
+              }
+            ],
+            "number_of_mount_targets": 0,
+            "owner_id": "650482310680",
+            "performance_mode": "generalPurpose",
+            "provisioned_throughput_in_mibps": 0,
+            "size_in_bytes": [
+              {
+                "value": 6144,
+                "value_in_ia": 0,
+                "value_in_standard": 6144
+              }
+            ],
+            "tags": {},
+            "tags_all": {},
+            "throughput_mode": "bursting"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_efs_mount_target",
+      "name": "alfa",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "availability_zone_id": "use1-az1",
+            "availability_zone_name": "us-east-1a",
+            "dns_name": "fs-5f58dfeb.efs.us-east-1.amazonaws.com",
+            "file_system_arn": "arn:aws:elasticfilesystem:us-east-1:650482310680:file-system/fs-5f58dfeb",
+            "file_system_id": "fs-5f58dfeb",
+            "id": "fsmt-72873cc7",
+            "ip_address": "172.31.3.64",
+            "mount_target_dns_name": "us-east-1a.fs-5f58dfeb.efs.us-east-1.amazonaws.com",
+            "network_interface_id": "eni-0892c972b6f5f7aa5",
+            "owner_id": "650482310680",
+            "security_groups": [
+              "sg-5a34e554"
+            ],
+            "subnet_id": "subnet-21086847"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_efs_file_system.file_system"
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs
+$
+
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs
+$
+
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs
+$
+
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs
+$
+
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs
+$ ls
+README.md  main.tf  outputs.tf  terraform.tfstate  terraform.tfstate.backup  variables.tf  vars/
+
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs
+$ terraform destroy
+var.creation_token
+  (Optional) A unique name (a maximum of 64 characters are allowed) used as reference when creating the EFS
+
+  Enter a value:
+
+var.subnet_id
+  (Required) The ID of the subnet to add the mount target in.
+
+  Enter a value:
+
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_efs_file_system.file_system will be destroyed
+  - resource "aws_efs_file_system" "file_system" {
+      - arn                             = "arn:aws:elasticfilesystem:us-east-1:650482310680:file-system/fs-5f58dfeb" -> null
+      - creation_token                  = "sample_token" -> null
+      - dns_name                        = "fs-5f58dfeb.efs.us-east-1.amazonaws.com" -> null
+      - encrypted                       = false -> null
+      - id                              = "fs-5f58dfeb" -> null
+      - number_of_mount_targets         = 0 -> null
+      - owner_id                        = "650482310680" -> null
+      - performance_mode                = "generalPurpose" -> null
+      - provisioned_throughput_in_mibps = 0 -> null
+      - size_in_bytes                   = [
+          - {
+              - value             = 6144
+              - value_in_ia       = 0
+              - value_in_standard = 6144
+            },
+        ] -> null
+      - tags                            = {} -> null
+      - tags_all                        = {} -> null
+      - throughput_mode                 = "bursting" -> null
+
+      - lifecycle_policy {
+          - transition_to_ia = "AFTER_30_DAYS" -> null
+        }
+    }
+
+  # aws_efs_mount_target.alfa will be destroyed
+  - resource "aws_efs_mount_target" "alfa" {
+      - availability_zone_id   = "use1-az1" -> null
+      - availability_zone_name = "us-east-1a" -> null
+      - dns_name               = "fs-5f58dfeb.efs.us-east-1.amazonaws.com" -> null
+      - file_system_arn        = "arn:aws:elasticfilesystem:us-east-1:650482310680:file-system/fs-5f58dfeb" -> null
+      - file_system_id         = "fs-5f58dfeb" -> null
+      - id                     = "fsmt-72873cc7" -> null
+      - ip_address             = "172.31.3.64" -> null
+      - mount_target_dns_name  = "us-east-1a.fs-5f58dfeb.efs.us-east-1.amazonaws.com" -> null
+      - network_interface_id   = "eni-0892c972b6f5f7aa5" -> null
+      - owner_id               = "650482310680" -> null
+      - security_groups        = [
+          - "sg-5a34e554",
+        ] -> null
+      - subnet_id              = "subnet-21086847" -> null
+    }
+
+Plan: 0 to add, 0 to change, 2 to destroy.
+
+Do you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: no
+
+Destroy cancelled.
+
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs
+$ terraform destroy -var-file=^C
+
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs
+$ terraform destroy  -var-file="vars/sample.tfvars" .
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_efs_file_system.file_system will be destroyed
+  - resource "aws_efs_file_system" "file_system" {
+      - arn                             = "arn:aws:elasticfilesystem:us-east-1:650482310680:file-system/fs-5f58dfeb" -> null
+      - creation_token                  = "sample_token" -> null
+      - dns_name                        = "fs-5f58dfeb.efs.us-east-1.amazonaws.com" -> null
+      - encrypted                       = false -> null
+      - id                              = "fs-5f58dfeb" -> null
+      - number_of_mount_targets         = 0 -> null
+      - owner_id                        = "650482310680" -> null
+      - performance_mode                = "generalPurpose" -> null
+      - provisioned_throughput_in_mibps = 0 -> null
+      - size_in_bytes                   = [
+          - {
+              - value             = 6144
+              - value_in_ia       = 0
+              - value_in_standard = 6144
+            },
+        ] -> null
+      - tags                            = {} -> null
+      - tags_all                        = {} -> null
+      - throughput_mode                 = "bursting" -> null
+
+      - lifecycle_policy {
+          - transition_to_ia = "AFTER_30_DAYS" -> null
+        }
+    }
+
+  # aws_efs_mount_target.alfa will be destroyed
+  - resource "aws_efs_mount_target" "alfa" {
+      - availability_zone_id   = "use1-az1" -> null
+      - availability_zone_name = "us-east-1a" -> null
+      - dns_name               = "fs-5f58dfeb.efs.us-east-1.amazonaws.com" -> null
+      - file_system_arn        = "arn:aws:elasticfilesystem:us-east-1:650482310680:file-system/fs-5f58dfeb" -> null
+      - file_system_id         = "fs-5f58dfeb" -> null
+      - id                     = "fsmt-72873cc7" -> null
+      - ip_address             = "172.31.3.64" -> null
+      - mount_target_dns_name  = "us-east-1a.fs-5f58dfeb.efs.us-east-1.amazonaws.com" -> null
+      - network_interface_id   = "eni-0892c972b6f5f7aa5" -> null
+      - owner_id               = "650482310680" -> null
+      - security_groups        = [
+          - "sg-5a34e554",
+        ] -> null
+      - subnet_id              = "subnet-21086847" -> null
+    }
+
+Plan: 0 to add, 0 to change, 2 to destroy.
+
+Do you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: yes
+
+aws_efs_mount_target.alfa: Destroying... [id=fsmt-72873cc7]
+aws_efs_mount_target.alfa: Still destroying... [id=fsmt-72873cc7, 10s elapsed]
+aws_efs_mount_target.alfa: Destruction complete after 15s
+aws_efs_file_system.file_system: Destroying... [id=fs-5f58dfeb]
+aws_efs_file_system.file_system: Destruction complete after 4s
+
+Destroy complete! Resources: 2 destroyed.
+
+LokeshKokku@Lokesh MINGW64 /d/terraform/tfefs
+$
+
